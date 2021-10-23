@@ -16,3 +16,6 @@ Obviously the design could be better but I wanted to do a mix among functionalit
 Short structure: - services
                  - components
                  - main -> App.js
+
+
+I tried to create different components as following : List of Gists, Item ( Gist item having some information inside) , Header
