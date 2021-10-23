@@ -1,9 +1,9 @@
-import axios from 'axios';
 import { useState } from 'react';
 import './App.css';
 
 import Header from './components/Header';
 import ListGists from './components/ListGists';
+import httpServices from './services/httpServices';
 
 function App() {
 
@@ -17,7 +17,7 @@ function App() {
 
     setDataAvailable(true);
     setInnerText('');
-    const response = await axios.get(endPoint);
+    const response = await httpServices.get(endPoint);
 
     if(userSelected == undefined || userSelected == "")
       return setDataAvailable(false);
@@ -35,7 +35,7 @@ function App() {
     {/** Getting raw_url from selected file */}
     Object.entries(file).map(([key, value]) => ({ [key]: rawUrl = value.raw_url }));
 
-    const result = await axios.get(rawUrl);
+    const result = await httpServices.get(rawUrl);
     setInnerText(result.data);
     
   }

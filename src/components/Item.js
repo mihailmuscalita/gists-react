@@ -1,6 +1,6 @@
-import axios from "axios";
 import React, {useState, useEffect} from "react";
-import { FaPaintBrush } from "react-icons/fa";
+
+import httpServices from "../services/httpServices";
 
 
 const Item = ({gist, onClick}) => {
@@ -10,11 +10,11 @@ const Item = ({gist, onClick}) => {
 
     useEffect(()=>{
         {/** in useEffect hook we are calling the api to take last 3 username who have forked it */}
- //       getLastForkedUsers();
+       getLastForkedUsers();
     }, [])
 
     const getLastForkedUsers = async () => {
-        const result = await axios.get(`https://api.github.com/gists/${gist.id}/forks`);
+        const result = await httpServices.get(`https://api.github.com/gists/${gist.id}/forks`);
         setForkUsers(result.data);
     }
 
@@ -22,7 +22,7 @@ const Item = ({gist, onClick}) => {
     Object.entries(gist.files).map(([key, value]) => ({ [key]: pairs.push([value.filename, value.raw_url]) }));
 
     return (
-        <div className="flex flex-col items-center m-1 cursor-pointer hover:bg-gray-800 rounded-md p-1">
+        <div className="items-center m-1 cursor-pointer hover:bg-gray-800 rounded-md p-1">
             <div 
                 className="flex flex-col items-center border border-gray-300 rounded-lg bg-gray-500 m-2 p-3">
                 <h2>{gist.url}</h2>
