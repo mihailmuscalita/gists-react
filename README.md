@@ -19,3 +19,4 @@ Short structure: - services
 
 
 I tried to create different components as following : List of Gists, Item ( Gist item having some information inside) , Header
+![gists](https://user-images.githubusercontent.com/57367539/138570846-07dbf35e-72c1-49f1-bcaf-c93ddb2a68da.png)
