@@ -14,7 +14,9 @@ function App() {
 
   const getGistsByUser = async () =>{
     const endPoint = `https://api.github.com/users/${userSelected}/gists`;
+
     setDataAvailable(true);
+    setInnerText('');
     const response = await axios.get(endPoint);
 
     if(userSelected == undefined || userSelected == "")
@@ -28,6 +30,7 @@ function App() {
   }
 
   const getContentOfFile = async (file) =>{
+
     let rawUrl="";
     {/** Getting raw_url from selected file */}
     Object.entries(file).map(([key, value]) => ({ [key]: rawUrl = value.raw_url }));
@@ -45,19 +48,20 @@ function App() {
       />
 
       {/* Body of current app */}
-      <div className="">
+      <div className="aligns-center justify-center bg-gray-200">
         <div className="flex items-center justify-center mt-3">
-          {!dataAvailable && <p>You should search for some users</p>}
+          {!dataAvailable && <p className="aligns-center justify-center italic">You should search for some users</p>}
           <ListGists 
             gists={gists}
             onClick={getContentOfFile}  
           />
         </div>
       </div>
+
       {/* Information about selected item */}
-      <div className="flex flex-col relative aligns-center justify-center border border-gray-300 p-3 m-3">
-        <h2 className=" relative p-2 m-2 mt-2 border border-gray-300">The content of file selected will be displayed bellow</h2>
-        {innerText}
+      <div className="relative flex flex-col relative aligns-center justify-center border border-gray-300 p-3 m-5">
+        <h2 className="p-2 m-2 mt-2 border border-gray-300 italic">The content of file selected will be displayed bellow</h2>
+        <span className="mt-10">{innerText}</span>
       </div>
     </div>
   );
